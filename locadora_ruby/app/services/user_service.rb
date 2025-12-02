@@ -11,4 +11,12 @@ class UserService
             return { success: false, errors: user.errors.full_messages }
         end
     end
+
+    def update(existing_user)
+        if existing_user.update(@user)
+            return { success: true, user: existing_user }
+        else
+            return { success: false, errors: existing_user.errors.full_messages }
+        end
+    end
 end

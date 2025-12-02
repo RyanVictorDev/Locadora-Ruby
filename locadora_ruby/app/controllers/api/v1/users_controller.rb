@@ -24,6 +24,21 @@ class Api::V1::UsersController < ApplicationController
         end
     end
 
+    def update
+        user = User.find_by(id: params[:id])
+        if user
+            service = UserService.new(user_params)
+            result = service.update(user)
+            if result[:success]
+                render json: result[:user], status: :ok
+            else
+                render json: { errors: result[:errors] }, status: :unprocessable_entity
+            end
+        else
+            render json: { error: "Usuário não encontrado" }, status: :not_found
+        end
+    end
+
     private 
 
     def user_params
