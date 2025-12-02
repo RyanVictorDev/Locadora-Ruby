@@ -3,11 +3,12 @@ class UserService
         @user = user
     end
 
-    def create_user
-        if @user.save
-            { success: true, user: @user }
+    def create
+        user =  User.new(@user)
+        if user.save
+            return { success: true, user: user }
         else
-            { success: false, errors: @user.errors.full_messages }
+            return { success: false, errors: user.errors.full_messages }
         end
     end
 end
