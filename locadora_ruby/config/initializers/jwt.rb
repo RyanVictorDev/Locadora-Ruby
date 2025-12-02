@@ -1,0 +1,1 @@
+Rails.application.config.jwt_secret = ENV['JWT_SECRET'] || "super_secret_key"
