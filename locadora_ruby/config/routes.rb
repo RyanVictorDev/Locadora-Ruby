@@ -4,6 +4,7 @@ Rails.application.routes.draw do
       post 'login', to: 'auth#login'
 
       resources :users
+      resources :publishers
     end
   end
 end
